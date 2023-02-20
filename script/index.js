@@ -35,6 +35,7 @@ const popupButtonCloseProfile = document.querySelector('.popup__button-close-pro
 const popupButtonCloseCards = document.querySelector('.popup__button-close-cards');
 const cardsButtonAdd = document.querySelector('.profile__button-add');
 const cardButtonLike = document.querySelectorAll('.card__button-like');
+const cardButtonTrash = document.querySelectorAll(".card__button-trash");
 
 const profileName =  document.querySelector('.profile__name');
 const profileCareer = document.querySelector('.profile__career');
@@ -98,6 +99,14 @@ formCards.addEventListener("submit", function (evt) {
   container.prepend(placeElement);
   closedPopup(popupCards);
   evt.target.reset();
+});
+
+//удаление карточек
+cardButtonTrash.forEach((el) => {
+  el.addEventListener("click", () => {
+    const parentOfTrash = el.closest(".card"); // не поняла как работает метод closest 
+    parentOfTrash.remove();
+  });
 });
 
 //лайки всех карточек!! 
