@@ -24,7 +24,20 @@
         <button class="profile__button-add" type="button"></button>
     </section>
     <section class="cards">
-
+        <article class="card">
+            <img src="./images/Ivanovo.jpg" alt="город Иваново." class="card__img">
+            <div class="card__info">
+                <p class="card__name">Иваново</p>
+                <button class="card__button-like button-hover"></button>                
+            </div>
+        </article>
+        <article class="card">
+            <img src="./images/Saint-Petersburg.jpg" alt="город Санкт-Петербург." class="card__img">
+            <div class="card__info">
+                <p class="card__name">Санкт-Петербург</p>
+                <button class="card__button-like button-hover"></button>                
+            </div>
+        </article>
     </section>
     <div class="popup popup__profile">
         <div class="popup__container">
@@ -52,7 +65,7 @@
   <footer class="footer">
     <p class="footer__copywriter">&copy; 2022 Mesto Russia by Anastasia &#128506;</p>
   </footer>
-  <template id="card__template">
+  <template class="card__template">
     <article class="card">
         <img src="#" alt="Фото пользователя" class="card__img">
         <div class="card__info">
