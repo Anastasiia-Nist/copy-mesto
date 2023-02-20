@@ -39,16 +39,13 @@ const cardButtonTrash = document.querySelectorAll(".card__button-trash");
 
 const profileName =  document.querySelector('.profile__name');
 const profileCareer = document.querySelector('.profile__career');
-
+//форма User
 const formProfile = document.querySelector('.popup__form-profile');
 const nameInput = document.querySelector('.popup__input_type_name');
 const careerInput = document.querySelector('.popup__input_type_career');
 
+// форма добавления карточек
 const formCards = document.querySelector('.popup__form-cards');
-
-const cardTemplate = document.querySelector(".card__template").content;
-const template = cardTemplate.querySelector(".card");
-
 const cardInput = document.querySelector(".card__name");
 const urlInput = document.querySelector(".card__img");
 
@@ -79,48 +76,35 @@ function handleFormSubmit (evt) {
   closedPopup(popupProfile);
 }
 
-//добавление карточек
-  const createCard = ({ name, link }) => {
-  const placeElement = template.cloneNode(true); // клонируем из cardTemplate в placeElement
-  const cardImg = placeElement.querySelector(".card__img");
+//добавление 6 карточек из массива initialCards на страничку
 
-  cardImg.src = link;
-  cardImg.alt = name;
-  placeElement.querySelector(".card__name").textContent = name; // название
-}
-
-formCards.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  openedPopup(popupCards);
-  const placeElement = createCard({
-    name: cardInput.value,
-    link: urlInput.value,
-  });
-  container.prepend(placeElement);
-  closedPopup(popupCards);
-  evt.target.reset();
-});
 
 //удаление карточек
 cardButtonTrash.forEach((el) => {
   el.addEventListener("click", () => {
-    const parentOfTrash = el.closest(".card"); // не поняла как работает метод closest 
-    parentOfTrash.remove();
+    el.closest(".card").remove(); // не поняла как работает метод closest 
   });
 });
 
-//лайки всех карточек!! 
+//лайки всех карточек
 cardButtonLike.forEach(function (likeActive) {
-  likeActive.addEventListener("click", function () {
+  likeActive.addEventListener("click", () => {
     likeActive.classList.toggle("card__button-like_active");
   });
 });
 
-profileButtonEdit.addEventListener('click', handleProfilePopup);//открытие попапа User
+//открытие попапа User
+profileButtonEdit.addEventListener('click', handleProfilePopup);
+
+//открытие попапа с формой добавления карточек
 cardsButtonAdd.addEventListener("click", function () {
   openedPopup(popupCards);
-}); //открытие попапа с карточками
-formProfile.addEventListener('submit', handleFormSubmit);//отправка формы User
+}); 
+
+//отправка формы User
+formProfile.addEventListener('submit', handleFormSubmit);
+
+//отправка формы добавления карточек
 
 
 // все кнопки X закрытия попапа 
