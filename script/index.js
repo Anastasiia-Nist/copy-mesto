@@ -29,13 +29,15 @@ const initialCards = [
 const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup__profile');
 const popupCards = document.querySelector('.popup__cards');
+const popupImage = document.querySelector('.popup__image');
 //кнопки
 const profileButtonEdit = document.querySelector('.profile__button-edit');
 const popupButtonCloseProfile = document.querySelector('.popup__button-close-profile');
 const popupButtonCloseCards = document.querySelector('.popup__button-close-cards');
+const popupButtonCloseImage = document.querySelector('.popup__button-close-image');
 const cardsButtonAdd = document.querySelector('.profile__button-add');
 const cardButtonLike = document.querySelectorAll('.card__button-like');
-const cardButtonTrash = document.querySelectorAll(".card__button-trash");
+const cardButtonTrash = document.querySelectorAll('.card__button-trash');
 
 const profileName =  document.querySelector('.profile__name');
 const profileCareer = document.querySelector('.profile__career');
@@ -46,10 +48,11 @@ const careerInput = document.querySelector('.popup__input_type_career');
 
 // форма добавления карточек
 const formCards = document.querySelector('.popup__form-cards');
-const cardInput = document.querySelector(".card__name");
-const urlInput = document.querySelector(".card__img");
-
-
+const cardInput = document.querySelectorAll(".card__name");
+const urlInput = document.querySelectorAll(".card__img");
+//
+const cardImage = document.querySelector(".popup__image-large");
+const cardName = document.querySelector(".popup__image-title");
 //открытие попапа
 function openedPopup(popup) {
   popup.classList.add('popup_opened');
@@ -101,6 +104,13 @@ cardsButtonAdd.addEventListener("click", function () {
   openedPopup(popupCards);
 }); 
 
+//открытие попапа с большой картинкой
+urlInput.forEach(function (elem) {
+  elem.addEventListener("click", function () {
+    openedPopup(popupImage);
+  });
+});
+
 //отправка формы User
 formProfile.addEventListener('submit', handleFormSubmit);
 
@@ -114,4 +124,6 @@ popupButtonCloseProfile.addEventListener('click', function() {
 popupButtonCloseCards.addEventListener('click', function() {
 closedPopup(popupCards);
 });
-
+popupButtonCloseImage.addEventListener('click', function() {
+  closedPopup(popupImage);
+  });
