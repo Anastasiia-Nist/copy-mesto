@@ -1,3 +1,6 @@
+
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -25,6 +28,12 @@ const initialCards = [
   }
 ];
 
+//
+const CARDS_LIST = document.querySelector('.cards')
+const CARD = document.querySelector("#card")
+const TEMPLATE_CARD = document.querySelector("#template-card")
+
+
 //попапы
 const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup__profile');
@@ -32,6 +41,7 @@ const popupCards = document.querySelector('.popup__cards');
 const popupImage = document.querySelector('.popup__image');
 //кнопки
 const profileButtonEdit = document.querySelector('.profile__button-edit');
+
 const popupButtonCloseProfile = document.querySelector('.popup__button-close-profile');
 const popupButtonCloseCards = document.querySelector('.popup__button-close-cards');
 const popupButtonCloseImage = document.querySelector('.popup__button-close-image');
@@ -85,7 +95,7 @@ function handleFormSubmit (evt) {
 //удаление карточек
 cardButtonTrash.forEach((el) => {
   el.addEventListener("click", () => {
-    el.closest(".card").remove(); // не поняла как работает метод closest 
+    el.closest(".card").remove(); // не поняла как работает метод closest
   });
 });
 
@@ -102,7 +112,7 @@ profileButtonEdit.addEventListener('click', handleProfilePopup);
 //открытие попапа с формой добавления карточек
 cardsButtonAdd.addEventListener("click", function () {
   openedPopup(popupCards);
-}); 
+});
 
 //открытие попапа с большой картинкой
 urlInput.forEach(function (elem) {
@@ -117,7 +127,7 @@ formProfile.addEventListener('submit', handleFormSubmit);
 //отправка формы добавления карточек
 
 
-// все кнопки X закрытия попапа 
+// все кнопки X закрытия попапа
 popupButtonCloseProfile.addEventListener('click', function() {
   closedPopup(popupProfile);
 });
@@ -126,4 +136,26 @@ closedPopup(popupCards);
 });
 popupButtonCloseImage.addEventListener('click', function() {
   closedPopup(popupImage);
-  });
+});
+
+function addAllCard(){
+  initialCards.forEach((card)=>addCard(card.name,card.link))
+}
+
+addAllCard()
+
+function addCard(name,link){
+  const card = TEMPLATE_CARD.content.querySelector('.card')
+
+  const imgElement = card.querySelector('.card__img')
+  imgElement.setAttribute('src',link)
+
+  const titleElement = card.querySelector('.card__name')
+  titleElement.textContent = name
+
+  const cloneCard = card.cloneNode(true)
+
+
+  CARDS_LIST.prepend(cloneCard)
+}
+
