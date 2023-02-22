@@ -24,16 +24,6 @@
         <button class="profile__button-add" type="button"></button>
     </section>
     <section class="cards">
-      <template id="template-card">
-        <li class="card">
-          <img src="#" alt="Фото пользователя" class="card__img">
-          <div class="card__info">
-            <h2 class="card__name"></h2>
-            <button class="card__button-like"></button>
-          </div>
-          <button class="card__button-trash"></button>
-        </li>
-      </template>
     </section>
     <div class="popup popup__profile">
         <div class="popup__container">
@@ -70,7 +60,16 @@
   <footer class="footer">
     <p class="footer__copywriter">&copy; 2022 Mesto Russia by Anastasia &#128506;</p>
   </footer>
-
+  <template id="template-card">
+    <article class="card">
+      <img src="#" alt="Фото пользователя" class="card__img">
+      <div class="card__info">
+        <h2 class="card__name"></h2>
+        <button class="card__button-like"></button>
+      </div>
+      <button class="card__button-trash"></button>
+    </article>
+  </template>
   <script src="./script/index.js"></script>
 </body>
 </html>
