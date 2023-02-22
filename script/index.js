@@ -54,8 +54,9 @@ const careerInput = document.querySelector('.popup__input_type_career');
 
 // форма добавления карточек
 const formCards = document.querySelector('.popup__form-cards');
-const cardInput = document.querySelectorAll(".popup__input_card_name");
-const urlInput = document.querySelectorAll(".popup__input_card_img");
+
+const cardInput = document.querySelector(".popup__input_card_name");
+const urlInput = document.querySelector(".popup__input_card_img");
 //
 const cardImage = document.querySelector(".popup__image-large");
 const cardName = document.querySelector(".popup__image-title");
@@ -93,8 +94,8 @@ function handleFormSubmit (evt) {
   const cardElement = TEMPLATE_CARD.content.cloneNode(true);
   cardElement.querySelector(".card__name").textContent = cardName;
   const imageCard = cardElement.querySelector(".card__img");
-  imageCard.src = cardLink; 
-  
+  imageCard.src = cardLink;
+
   const cardButtonLike = cardElement.querySelectorAll('.card__button-like');
   const cardButtonTrash = cardElement.querySelectorAll('.card__button-trash');
 
@@ -113,45 +114,49 @@ initialCards.forEach(function (item) {
 
 //добавление 6 карточек из массива initialCards на страничку
 
-function addCard(name, link) {
-  const card = TEMPLATE_CARD.content.querySelector('.card');
-  const imgElement = card.querySelector('.card__img');
-  imgElement.setAttribute('src', link);
+function createCard(name, link) {
 
-  const titleElement = card.querySelector('.card__name');
-  titleElement.textContent = name;
-  imgElement.alt = name;
+  const defaultCard = TEMPLATE_CARD.content.querySelector('.card');
+  const newCard = defaultCard.cloneNode(true);
 
-  const cloneCard = card.cloneNode(true);
+  const newCardImg = newCard.querySelector('.card__img');
+  const newCardTitle = newCard.querySelector('.card__name');
 
-  CARDS_LIST.append(cloneCard);
+  newCardImg.src = link
+  newCardImg.alt = name;
+
+  newCardTitle.textContent = name;
+
+
 
   //лайки и корзина
-  const likeButton = cloneCard.querySelector(".card__button-like");
-  const trashButton = cloneCard.querySelector(".card__button-trash")
+  const newCardLikeButton = newCard.querySelector(".card__button-like");
+  const newCardTrashButton = newCard.querySelector(".card__button-trash")
 
   function likeCard() {
-    likeButton.classList.toggle("card__button-like_active");
-  };
-
-  function deleteCard() {
-    cloneCard.remove();
-  };
-  //попап с большой картинкой
-  function openedCardLarge() {
-    console.log('click');
+    newCardLikeButton.classList.toggle("card__button-like_active");
   }
 
-  //слушатели на карточке 
-  likeButton.addEventListener("click", likeCard);
-  trashButton.addEventListener("click", deleteCard);
-  imgElement.addEventListener("click", openedCardLarge);// большая картинка
-  return cloneCard;
+  function deleteCard() {
+    newCardTrashButton.remove();
+  }
+  //попап с большой картинкой
+
+  //слушатели на карточке
+  newCardLikeButton.addEventListener("click", likeCard);
+  newCardTrashButton.addEventListener("click", deleteCard);
+  newCardImg.addEventListener('click',(e)=> console.log(e))
+
+  return newCard
 }
 
 
 function addAllCard() {
-  initialCards.forEach((card)=>addCard(card.name,card.link))
+  initialCards.forEach((card)=> {
+    console.log(card.name)
+    const newCard = createCard(card.name, card.link)
+    CARDS_LIST.append(newCard)
+  })
 }
 
 addAllCard();
@@ -170,12 +175,11 @@ formProfile.addEventListener('submit', handleFormSubmit);
 
 //отправка формы добавления карточек
 formCards.addEventListener("submit", (evt) => {
+
   evt.preventDefault();
-  const placeElement = addCard(cardInput, urlInput);
-  CARDS_LIST.prepend(placeElement);
+  const newCard = createCard(cardInput.value, urlInput.value)
+  CARDS_LIST.prepend(newCard);
   closedPopup(popupCards);
-  console.log(cardInput.value);
-  console.log(urlInput.value);
   evt.target.reset();
 });
 
