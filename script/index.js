@@ -31,9 +31,9 @@ const TEMPLATE_CARD = document.querySelector("#template-card");
 
 //попапы
 const popup = document.querySelector(".popup");
-const popupProfile = document.querySelector(".popup__profile");
-const popupCards = document.querySelector(".popup__cards");
-const popupImage = document.querySelector(".popup__image");
+const popupProfile = document.querySelector(".popup-profile");
+const popupCards = document.querySelector(".popup-cards");
+const popupImage = document.querySelector(".popup-image");
 
 //кнопки
 const profileButtonEdit = document.querySelector(".profile__button-edit");
