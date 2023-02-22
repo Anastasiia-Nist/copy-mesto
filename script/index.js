@@ -27,9 +27,7 @@ const initialCards = [
 
 //
 const CARDS_LIST = document.querySelector(".cards");
-const CARD = document.querySelector("#card");
 const TEMPLATE_CARD = document.querySelector("#template-card");
-const CARD_INFO = document.querySelector(".card__info");
 
 //попапы
 const popup = document.querySelector(".popup");
